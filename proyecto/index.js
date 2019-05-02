@@ -90,15 +90,24 @@ function registrar(pedido, respuesta) {
   });
   pedido.on('end', () => {
     const formulario = querystring.parse(info);
-    respuesta.writeHead(200, { 'Content-Type': 'text/html' });
-    const pagina =
-      `<!doctype html><html><head></head><body>
-       Nombre de usuario:${formulario['usuario']}<br>
-      Clave:${formulario['clave']}<br>
-      Confirmacion Clave:${formulario['rclave']}<br>
-      <a href="login.html">Retornar</a>
-      </body></html>`;
-    respuesta.end(pagina);
+    if(formulario['clave']==formulario['rclave']){
+      respuesta.writeHead(200, { 'Content-Type': 'text/html' });
+      const pagina =
+        `<!doctype html><html><head></head><body>
+         Nombre de usuario:${formulario['usuario']}<br>
+        Clave:${formulario['clave']}<br>
+        Confirmacion Clave:${formulario['rclave']}<br>
+        <a href="login.html">Retornar</a>
+        </body></html>`;
+      respuesta.end(pagina);
+    } else{
+      /*respuesta.writeHead(200, { 'Content-Type': 'text/html' });
+      const pagina =
+        `<!doctype html><html><head></head><body>
+        <script type='text/javascript'>alert('La contraseña no coincide con su confirmación.')</script>
+        </body></html>`;
+      respuesta.end(pagina);*/
+    }
   });
 }
 
