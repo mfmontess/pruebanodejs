@@ -2,6 +2,8 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const querystring = require('querystring');
+var MongoClient = require('mongodb').MongoClient;
+const urlMongo = "mongodb://localhost:27017/";
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -72,6 +74,24 @@ function recuperar(pedido, respuesta) {
   });
   pedido.on('end', () => {
     const formulario = querystring.parse(info);
+    MongoClient.connect(urlMongo, { useNewUrlParser: true }, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("mydb");
+      var query = { username: formulario['usuario'], password: formulario['clave'] };
+      dbo.collection("users").find(query).toArray(function (err, result) {
+        if (err) {
+          throw err;
+        } else {
+          if (result.length == 0)
+            console.log("Usuario incorrecto o no existe");
+          else {
+            var x = result.shift();
+            console.log(x.username + " " + x.password);
+          }
+          db.close();
+        }
+      });
+    });
     respuesta.writeHead(200, { 'Content-Type': 'text/html' });
     const pagina =
       `<!doctype html><html><head></head><body>
@@ -90,7 +110,17 @@ function registrar(pedido, respuesta) {
   });
   pedido.on('end', () => {
     const formulario = querystring.parse(info);
-    if(formulario['clave']==formulario['rclave']){
+    if (formulario['clave'] == formulario['rclave']) {
+      MongoClient.connect(urlMongo, { useNewUrlParser: true }, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydb");
+        var myobj = { username: formulario['usuario'], password: formulario['clave'] };
+        dbo.collection("users").insertOne(myobj, function (err, res) {
+          if (err) throw err;
+          console.log(`${formulario['usuario']} inserted`);
+          db.close();
+        });
+      });
       respuesta.writeHead(200, { 'Content-Type': 'text/html' });
       const pagina =
         `<!doctype html><html><head></head><body>
@@ -100,7 +130,7 @@ function registrar(pedido, respuesta) {
         <a href="login.html">Retornar</a>
         </body></html>`;
       respuesta.end(pagina);
-    } else{
+    } else {
       /*respuesta.writeHead(200, { 'Content-Type': 'text/html' });
       const pagina =
         `<!doctype html><html><head></head><body>
