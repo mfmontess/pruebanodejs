@@ -82,24 +82,21 @@ function recuperar(pedido, respuesta) {
         if (err) {
           throw err;
         } else {
-          if (result.length == 0)
+          if (result.length == 0) {/*Si no retorno nada significa que no existe el usuario */
             console.log("Usuario incorrecto o no existe");
-          else {
+            respuesta.writeHead(301, { 'Location': `http://${hostname}:${port}/login.html?acc=err` });
+            respuesta.end();
+          }
+          else {/*Si retorno algo, obtiene el primer resultado y redirige a la pagina perfil */
             var x = result.shift();
             console.log(x.username + " " + x.password);
+            camino = 'public/perfil.html';
+            encaminar(pedido, respuesta, camino);
           }
           db.close();
         }
       });
     });
-    respuesta.writeHead(200, { 'Content-Type': 'text/html' });
-    const pagina =
-      `<!doctype html><html><head></head><body>
-       Nombre de usuario:${formulario['usuario']}<br>
-      Clave:${formulario['clave']}<br>
-      <a href="login.html">Retornar</a>
-      </body></html>`;
-    respuesta.end(pagina);
   });
 }
 
@@ -131,12 +128,9 @@ function registrar(pedido, respuesta) {
         </body></html>`;
       respuesta.end(pagina);
     } else {
-      /*respuesta.writeHead(200, { 'Content-Type': 'text/html' });
-      const pagina =
-        `<!doctype html><html><head></head><body>
-        <script type='text/javascript'>alert('La contraseña no coincide con su confirmación.')</script>
-        </body></html>`;
-      respuesta.end(pagina);*/
+      console.log("La contraseña no coincide con su confirmación.");
+      respuesta.writeHead(301, { 'Location': `http://${hostname}:${port}/registro.html?acc=err` });
+      respuesta.end();
     }
   });
 }

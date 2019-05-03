@@ -15,6 +15,22 @@
 			width: 100%;
 		}
 	</style>
+	<script>
+		window.onload = function () {
+			var prodId = getParameterByName('acc');
+			if (prodId == 'err') {
+				var capa = document.getElementById("err");
+				capa.click();
+			}
+		}
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+	</script>
 </head>
 
 <body>
@@ -28,16 +44,20 @@
 				<br>
 				<form action="registro" method="post">
 					<div class="form-group">
-						<input type="text" class="form-control" id="usuario" placeholder="Username" name="usuario" required />
+						<input type="text" class="form-control" id="usuario" placeholder="Username" name="usuario"
+							required />
 					</div>
 					<div class="form-group">
-						<input type="email" class="form-control" id="correo" placeholder="Email" name="correo" required />
+						<input type="email" class="form-control" id="correo" placeholder="Email" name="correo"
+							required />
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" id="pwd" placeholder="Password" name="clave" required>
+						<input type="password" class="form-control" id="pwd" placeholder="Password" name="clave"
+							required>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" id="rpwd" placeholder="Confirm Password" name="rclave" required>
+						<input type="password" class="form-control" id="rpwd" placeholder="Confirm Password"
+							name="rclave" required>
 					</div>
 					<div class="form-group">
 						<div class="form-check-inline">
@@ -48,14 +68,16 @@
 						</div>
 						<div class="form-check-inline">
 							<label class="form-check-label" for="rdGeneroFemenino">
-								<input type="radio" class="form-check-input" id="rdGeneroFemenino" name="rdGenero" value="mujer">Female
+								<input type="radio" class="form-check-input" id="rdGeneroFemenino" name="rdGenero"
+									value="mujer">Female
 							</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-check">
 							<label class="form-check-label" for="chkTerminos">
-								<input type="checkbox" class="form-check-input" id="chkTerminos" name="option1" value="something" required>Acepto
+								<input type="checkbox" class="form-check-input" id="chkTerminos" name="option1"
+									value="something" required>Acepto
 								los Terminos y Condiciones
 							</label>
 						</div>
@@ -64,6 +86,27 @@
 				</form>
 			</div>
 			<div class="col-sm-4"></div>
+		</div>
+		<div class="row">
+			<a href="#victorModal" id="err" role="button" class="btn btn-primary" data-toggle="modal"
+				style="visibility: hidden;">
+				Abrir ventana modal</a>
+			<div id="victorModal" class="modal fade">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">¿Estás seguro?</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						</div>
+						<div class="modal-body">
+							<p>La contraseña no coincide con su confirmación.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<hr>
