@@ -89,7 +89,6 @@ function recuperar(pedido, respuesta) {
           }
           else {/*Si retorno algo, obtiene el primer resultado y redirige a la pagina perfil */
             var x = result.shift();
-            console.log(x.username + " " + x.password);
             camino = 'public/perfil.html';
             encaminar(pedido, respuesta, camino);
           }
