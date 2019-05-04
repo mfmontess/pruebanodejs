@@ -8,7 +8,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<title>Login</title>
+	<title>Registro</title>
 	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	<style>
 		iframe {
@@ -19,8 +19,10 @@
 		window.onload = function () {
 			var prodId = getParameterByName('acc');
 			if (prodId == 'err') {
-				var capa = document.getElementById("err");
-				capa.click();
+				document.getElementById("error").style.display = "block";
+			}
+			if (prodId == 'conf') {
+				document.getElementById("confirmation").style.display = "block";
 			}
 		}
 
@@ -42,6 +44,14 @@
 			<div class="col-sm-4 jumbotron">
 				<h2>Registro</h2>
 				<br>
+				<div id="error" class="alert alert-dismissible alert-danger" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>La contraseña no coincide con su confirmación.</strong>
+				</div>
+				<div id="confirmation" class="alert alert-dismissible alert-success" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Usuario registrado.</strong>
+				</div>
 				<form action="registro" method="post">
 					<div class="form-group">
 						<input type="text" class="form-control" id="usuario" placeholder="Username" name="usuario"
@@ -86,27 +96,6 @@
 				</form>
 			</div>
 			<div class="col-sm-4"></div>
-		</div>
-		<div class="row">
-			<a href="#victorModal" id="err" role="button" class="btn btn-primary" data-toggle="modal"
-				style="visibility: hidden;">
-				Abrir ventana modal</a>
-			<div id="victorModal" class="modal fade">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">¿Estás seguro?</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body">
-							<p>La contraseña no coincide con su confirmación.</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button> 
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<hr>

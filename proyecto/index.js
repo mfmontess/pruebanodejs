@@ -90,6 +90,7 @@ function recuperar(pedido, respuesta) {
           else {/*Si retorno algo, obtiene el primer resultado y redirige a la pagina perfil */
             var x = result.shift();
             camino = 'public/perfil.html';
+            
             encaminar(pedido, respuesta, camino);
           }
           db.close();
@@ -117,15 +118,8 @@ function registrar(pedido, respuesta) {
           db.close();
         });
       });
-      respuesta.writeHead(200, { 'Content-Type': 'text/html' });
-      const pagina =
-        `<!doctype html><html><head></head><body>
-         Nombre de usuario:${formulario['usuario']}<br>
-        Clave:${formulario['clave']}<br>
-        Confirmacion Clave:${formulario['rclave']}<br>
-        <a href="login.html">Retornar</a>
-        </body></html>`;
-      respuesta.end(pagina);
+      respuesta.writeHead(301, { 'Location': `http://${hostname}:${port}/registro.html?acc=conf` });
+      respuesta.end();
     } else {
       console.log("La contraseña no coincide con su confirmación.");
       respuesta.writeHead(301, { 'Location': `http://${hostname}:${port}/registro.html?acc=err` });

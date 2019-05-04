@@ -20,8 +20,7 @@
 		window.onload = function () {
 			var prodId = getParameterByName('acc');
 			if (prodId == 'err') {
-				var capa = document.getElementById("err");
-				capa.click();
+				document.getElementById("error").style.display = "block";
 			}
 		}
 
@@ -43,6 +42,10 @@
 			<div class="col-sm-4 jumbotron">
 				<h2>Iniciar sesión</h2>
 				<br>
+				<div id="error" class="alert alert-dismissible alert-danger" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Usuario y/o contraseña incorrectos.</strong>
+				</div>
 				<form action="autenticacion" method="post">
 					<div class="form-group">
 						<input type="text" class="form-control" id="usuario" placeholder="Username" name="usuario"
@@ -56,26 +59,6 @@
 				</form>
 			</div>
 			<div class="col-sm-4"></div>
-		</div>
-		<div class="row">
-			<a href="#victorModal" id="err" role="button" class="btn btn-primary" data-toggle="modal" style="visibility: hidden;">
-				Abrir ventana modal</a>
-			<div id="victorModal" class="modal fade">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title">¿Estás seguro?</h4>
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						</div>
-						<div class="modal-body">
-							<p>¿Seguro que quieres borrar este elemento?</p> 
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</section>
 	<hr>
