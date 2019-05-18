@@ -36,9 +36,9 @@ npm start
 
 - Por defecto está definida para la ejecución la url [127.0.0.1:3000](http://127.0.0.1:3000)
 
-### Nota
+###### Nota
 Si se requiere modificar está url ir al archivo [../proyecto/index.js](https://github.com/mfmontess/pruebanodejs/blob/master/proyecto/index.js) y modificar las constantes hostname y port
-###### Ejemplo
+
 ```js
 const http = require('http');
 const url = require('url');
@@ -49,3 +49,5 @@ const urlMongo = "mongodb://localhost:27017/";
 const hostname = '127.0.0.1';
 const port = 8080
   ```
+  
+Para más información ver la [documentación](https://github.com/mfmontess/pruebanodejs/blob/master/Node.js.docx?raw=true)
