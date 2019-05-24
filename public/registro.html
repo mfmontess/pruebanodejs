@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<title>Registro</title>
+	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<style>
+		iframe {
+			width: 100%;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var prodId = getParameterByName('acc');
+			if (prodId == 'err') {
+				document.getElementById("error").style.display = "block";
+			}
+			if (prodId == 'conf') {
+				document.getElementById("confirmation").style.display = "block";
+			}
+		}
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+	</script>
+</head>
+
+<body>
+	<iframe src="menu_principal.html" frameborder="0"></iframe>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 jumbotron">
+				<h2>Registro</h2>
+				<br>
+				<div id="error" class="alert alert-dismissible alert-danger" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>La contraseña no coincide con su confirmación.</strong>
+				</div>
+				<div id="confirmation" class="alert alert-dismissible alert-success" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Usuario registrado.</strong>
+				</div>
+				<form action="registro" method="post">
+					<div class="form-group">
+						<input type="text" class="form-control" id="usuario" placeholder="Username" name="usuario"
+							required />
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" id="correo" placeholder="Email" name="correo"
+							required />
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="pwd" placeholder="Password" name="clave"
+							required>
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="rpwd" placeholder="Confirm Password"
+							name="rclave" required>
+					</div>
+					<div class="form-group">
+						<div class="form-check">
+							<label class="form-check-label" for="chkTerminos">
+								<input type="checkbox" class="form-check-input" id="chkTerminos" name="option1"
+									value="something" required>Acepto
+								los Terminos y Condiciones
+							</label>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block" value="Enviar">Enviar</button>
+				</form>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+	<hr>
+	<iframe src="footer.html" frameborder="0"></iframe>
+</body>
+
+</html>

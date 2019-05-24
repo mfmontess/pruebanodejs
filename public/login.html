@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<title>Login</title>
+	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<style>
+		iframe {
+			width: 100%;
+		}
+	</style>
+	<script>
+		window.onload = function () {
+			var prodId = getParameterByName('acc');
+			if (prodId == 'err') {
+				document.getElementById("error").style.display = "block";
+			}
+			if (prodId == 'conf') {
+				document.getElementById("confirmation").style.display = "block";
+			}
+		}
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+	</script>
+</head>
+
+<body>
+	<iframe src="menu_principal.html" frameborder="0"></iframe>
+	<br>
+	<section class="container">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 jumbotron">
+				<h2>Iniciar sesión</h2>
+				<br>
+				<div id="error" class="alert alert-dismissible alert-danger" style="display: none;">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Usuario y/o contraseña incorrectos.</strong>
+				</div>
+				<form action="autenticacion" method="post">
+					<div class="form-group">
+						<label for="email">Email address:</label>
+						<input type="email" class="form-control" id="email" placeholder="Email" name="correo"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label>
+						<input type="password" class="form-control" id="pwd" placeholder="Password" name="clave"
+							required>
+					</div>
+					<button type="submit" class="btn btn-primary btn-block" value="Enviar">Login</button>
+				</form>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+	</section>
+	<hr>
+	<iframe src="footer.html" frameborder="0"></iframe>
+</body>
+
+</html>

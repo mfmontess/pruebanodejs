@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<title>Login</title>
+	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-md bg-success navbar-dark">
+			<!-- Brand -->
+			<a class="navbar-brand" target="_top" href="index.html">Node.js</a>
+
+			<!-- Toggler/collapsibe Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Navbar links -->
+			<div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" target="_top" href="login.html">Cerrar sesión</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 jumbotron">
+				<h2>Perfil</h2>
+				<br>
+				<form action="registro" method="post">
+					<div class="form-group">
+						<label for="name">Nombre:</label>
+						<input class="form-control" id="name" placeholder="Nombre" name="name"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="email">Email address:</label>
+						<input type="email" class="form-control" id="email" placeholder="Email" name="correo"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label>
+						<input type="password" class="form-control" id="pwd" placeholder="Password" name="clave" required>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+</body>
+
+</html>
